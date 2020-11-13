@@ -1,0 +1,92 @@
+# A simple Michaelis-Menten enzymatic reaction
+begin parameters
+	k1		1e6
+	k1r		1e-4
+	k2		0.1
+end parameters
+
+
+#begin seed species
+#	S(a)		5e-7
+#	E(a)		2e-7
+#	P()		0
+#end seed species
+
+begin seed species
+	R5P(a)          5e-7
+    RibA(a)         2e-7
+    D2B4P(a)        5e-7
+    RibH(a)         2e-7
+    D8RL(a)         5e-7
+    RibE(a)         2e-7
+    Riboflavin(a)   0
+    RibC(a)         2e-7
+    FMN(a)          0
+    FAD()          0
+    GTP(a)         5e-7
+    D6P4(a)        0
+    RibD(a)        2e-7
+    A6U()         0
+
+end seed species
+
+# the actual reactions
+#begin reaction rules
+#	# Binding and dissociation
+#	S(a) + E(a) <-> S(a!1).E(a!1)	k1, k1r
+#	# Production
+#	S(a!1).E(a!1) -> P() + E(a)	k2
+#end reaction rules
+
+begin reaction rules
+    R5P(a) + RibA(a) <-> R5P(a!1).RibA(a!1) k1, k1r
+    R5P(a!1).RibA(a!1) -> D2B4P(a) + RibA(a) k2
+    
+    D2B4P(a) + RibH(a) <-> D2B4P(a!1).RibH(a!1) k1, k1r
+    D2B4P(a!1).RibH(a!1) -> D8RL(a) + RibH(a) k2
+    
+    D8RL(a) + RibE(a) <-> D8RL(a!1).RibE(a!1) k1, k1r
+    D8RL(a!1).RibE(a!1) -> Riboflavin(a) + RibE(a) k2
+    
+    Riboflavin(a) + RibC(a) <-> Riboflavin(a!1).RibC(a!1) k1, k1r
+    Riboflavin(a!1).RibC(a!1) -> FMN(a) + RibC(a) k2
+    
+    FMN(a) + RibC(a) <-> FMN(a!1).RibC(a!1) k1, k1r
+    FMN(a!1).RibC(a!1) -> FAD() + RibC(a) k2
+    
+    GTP(a) + RibA(a) <-> GTP(a!1).RibA(a!1) k1, k1r
+    GTP(a!1).RibA(a!1) -> D6P4(a) + RibA(a) k2
+    
+    D6P4(a) + RibD(a) <-> D6P4(a!1).RibD(a!1) k1, k1r
+    D6P4(a!1).RibD(a!1) -> A6U() + RibD(a) k2
+
+end reaction rules
+
+begin observables
+	Molecules	RibA		RibA(a) 
+	Molecules	R5P     	R5P(a)
+    Molecules   D2B4P       D2B4P(a)
+    
+    Molecules   RibH        RibH(a)
+    Molecules   D8RL        D8RL(a)
+    
+    Molecules   RibE        RibE(a)
+    Molecules   Riboflavin  Riboflavin(a)
+    
+    Molecules   RibC        RibC(a)
+    Molecules   FMN         FMN(a)
+    
+    Molecules   FAD         FAD()
+    
+    Molecules   GTP         GTP(a)
+    Molecules   D6P4        D6P4(a)
+    
+    Molecules   RibD        RibD(a)
+    Molecules   A6U         A6U()
+end observables
+
+## actions ##
+generate_network({overwrite=>1})
+
+# Equilibration
+simulate_ode({t_end=>100,n_steps=>1000,atol=>1e-10,rtol=>1e-8,sparse=>1})

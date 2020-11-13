@@ -1,10 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Oct 21 11:48:59 2019
-
-@author: Paolo
-"""
-
 # plotting utility from Tellurium documentation
 def my_plot(r, result, sizeX=6, sizeY=4):
 

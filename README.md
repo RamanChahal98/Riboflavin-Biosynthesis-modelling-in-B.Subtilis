@@ -1,4 +1,6 @@
 # Riboflavin-Biosynthesis-modelling-in-B.Subtilis
+This repository provides code for cellular modelling project of riboflavin biosynthesis in B.Subtilis
+
 <b>Dynamic Modelling - Antimony.py</b><br>
 To follow the changes of riboflavin production in B.Subtilis over time a dynamic model of riboflavin synthesis in B. Subtilis was produced using Antimony (Spyder for
 Tellurium 3.6), consisting of an ODE system following the law of mass action (Aronson JK, et al., 2016). 

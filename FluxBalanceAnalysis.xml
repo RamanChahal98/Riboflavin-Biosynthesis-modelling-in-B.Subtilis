@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by libAntimony version v2.11.0 with libSBML version 5.18.0. -->
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
+  <model metaid="Michaelis_Menten" id="Michaelis_Menten">
+    <listOfCompartments>
+      <compartment sboTerm="SBO:0000410" id="default_compartment" spatialDimensions="3" size="1" constant="true"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="R5P" compartment="default_compartment" initialConcentration="5e-07" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="RibA" compartment="default_compartment" initialConcentration="2e-07" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="R5P_RibA" compartment="default_compartment" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="D2B4P" compartment="default_compartment" initialConcentration="5e-07" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="RibH" compartment="default_compartment" initialConcentration="2e-07" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="D2B4P_RibH" compartment="default_compartment" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="D8RL" compartment="default_compartment" initialConcentration="5e-07" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="RibE" compartment="default_compartment" initialConcentration="2e-07" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="D8RL_RibE" compartment="default_compartment" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="Riboflavin" compartment="default_compartment" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="RibC" compartment="default_compartment" initialConcentration="2e-07" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="Riboflavin_RibC" compartment="default_compartment" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="FMN" compartment="default_compartment" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="FMN_RibC" compartment="default_compartment" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="FAD" compartment="default_compartment" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="GTP" compartment="default_compartment" initialConcentration="5e-07" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="GTP_RibA" compartment="default_compartment" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="D6P4" compartment="default_compartment" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="RibD" compartment="default_compartment" initialConcentration="2e-07" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="RibD_D6P4" compartment="default_compartment" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="A6U" compartment="default_compartment" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="k_R5P" value="0" constant="true"/>
+      <parameter id="k_GTP" value="0" constant="true"/>
+      <parameter id="k_Riboflavin" value="0" constant="true"/>
+      <parameter id="k_FAD" value="0" constant="true"/>
+      <parameter id="k1" value="1000000" constant="true"/>
+      <parameter id="k1r" value="0.0001" constant="true"/>
+      <parameter id="k2" value="0.1" constant="true"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction id="Synthesis1" reversible="true" fast="false">
+        <listOfProducts>
+          <speciesReference species="R5P" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> k_R5P </ci>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Synthesis2" reversible="true" fast="false">
+        <listOfProducts>
+          <speciesReference species="GTP" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> k_GTP </ci>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Biomass1" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="Riboflavin" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k_Riboflavin </ci>
+              <ci> Riboflavin </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Biomass2" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="FAD" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k_FAD </ci>
+              <ci> FAD </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="BindingR1" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="R5P" stoichiometry="1" constant="true"/>
+          <speciesReference species="RibA" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="R5P_RibA" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k1 </ci>
+              <ci> RibA </ci>
+              <ci> R5P </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="DissociationR1" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="R5P_RibA" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="R5P" stoichiometry="1" constant="true"/>
+          <speciesReference species="RibA" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k1r </ci>
+              <ci> R5P_RibA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ConversionR1" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="R5P_RibA" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="RibA" stoichiometry="1" constant="true"/>
+          <speciesReference species="D2B4P" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k2 </ci>
+              <ci> R5P_RibA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="BindingR2" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="D2B4P" stoichiometry="1" constant="true"/>
+          <speciesReference species="RibH" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="D2B4P_RibH" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k1 </ci>
+              <ci> RibH </ci>
+              <ci> D2B4P </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="DissociationR2" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="D2B4P_RibH" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="RibH" stoichiometry="1" constant="true"/>
+          <speciesReference species="D2B4P" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k1r </ci>
+              <ci> D2B4P_RibH </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ConversionR2" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="D2B4P_RibH" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="RibH" stoichiometry="1" constant="true"/>
+          <speciesReference species="D8RL" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k2 </ci>
+              <ci> D2B4P_RibH </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="BindingR3" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="D8RL" stoichiometry="1" constant="true"/>
+          <speciesReference species="RibE" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="D8RL_RibE" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k1 </ci>
+              <ci> RibE </ci>
+              <ci> D8RL </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="DissociationR3" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="D8RL_RibE" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="RibE" stoichiometry="1" constant="true"/>
+          <speciesReference species="D8RL" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k1r </ci>
+              <ci> D8RL_RibE </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ConversionR3" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="D8RL_RibE" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="RibE" stoichiometry="1" constant="true"/>
+          <speciesReference species="Riboflavin" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k2 </ci>
+              <ci> D8RL_RibE </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="BindingR4" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="RibC" stoichiometry="1" constant="true"/>
+          <speciesReference species="Riboflavin" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="Riboflavin_RibC" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k1 </ci>
+              <ci> RibC </ci>
+              <ci> Riboflavin </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="DissociationR4" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="Riboflavin_RibC" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="RibC" stoichiometry="1" constant="true"/>
+          <speciesReference species="Riboflavin" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k1r </ci>
+              <ci> Riboflavin_RibC </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ConversionR4" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="Riboflavin_RibC" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="RibC" stoichiometry="1" constant="true"/>
+          <speciesReference species="FMN" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k2 </ci>
+              <ci> Riboflavin_RibC </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="BindingR5" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="RibC" stoichiometry="1" constant="true"/>
+          <speciesReference species="FMN" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="FMN_RibC" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k1 </ci>
+              <ci> RibC </ci>
+              <ci> FMN </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="DissociationR5" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="FMN_RibC" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="RibC" stoichiometry="1" constant="true"/>
+          <speciesReference species="FMN" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k1r </ci>
+              <ci> FMN_RibC </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ConversionR5" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="FMN_RibC" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="RibC" stoichiometry="1" constant="true"/>
+          <speciesReference species="FAD" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k2 </ci>
+              <ci> FMN_RibC </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="BindingR6" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="GTP" stoichiometry="1" constant="true"/>
+          <speciesReference species="RibA" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="GTP_RibA" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k1 </ci>
+              <ci> RibA </ci>
+              <ci> GTP </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="DissociationR6" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="GTP_RibA" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="GTP" stoichiometry="1" constant="true"/>
+          <speciesReference species="RibA" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k1r </ci>
+              <ci> GTP_RibA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ConversionR6" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="GTP_RibA" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="RibA" stoichiometry="1" constant="true"/>
+          <speciesReference species="D6P4" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k2 </ci>
+              <ci> GTP_RibA </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="BindingR7" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="D6P4" stoichiometry="1" constant="true"/>
+          <speciesReference species="RibD" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="RibD_D6P4" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k1 </ci>
+              <ci> RibD </ci>
+              <ci> D6P4 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="DissociationR7" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="RibD_D6P4" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="D6P4" stoichiometry="1" constant="true"/>
+          <speciesReference species="RibD" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k1r </ci>
+              <ci> RibD_D6P4 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="ConversionR7" reversible="true" fast="false">
+        <listOfReactants>
+          <speciesReference species="RibD_D6P4" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="RibD" stoichiometry="1" constant="true"/>
+          <speciesReference species="A6U" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k2 </ci>
+              <ci> RibD_D6P4 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
